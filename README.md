@@ -1,7 +1,7 @@
 
 Click-Through Rate Prediction
 
-Khelan Patel (kjpatel4@ncsu.edu)				
+Khelan Patel (kjpatel4@ncsu.edu) '\n'
 Sonal Patil (sspatil4@ncsu.edu)			
 Darshak Bhatti (dbhatti@ncsu.edu)
 	 				
