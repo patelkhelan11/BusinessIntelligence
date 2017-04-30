@@ -1,8 +1,10 @@
 
 Click-Through Rate Prediction
 
-Khelan Patel				Sonal Patil				Darshak Bhatti
-kjpatel4@ncsu.edu			sspatil4@ncsu.edu 			dbhatti@ncsu.edu	
+Khelan Patel (kjpatel4@ncsu.edu)				
+Sonal Patil (sspatil4@ncsu.edu)			
+Darshak Bhatti (dbhatti@ncsu.edu)
+	 				
 
 Project Description
 Click-through rate (CTR) is the ratio of users who click on a specific link to the number of total users who view a page, email, or advertisement.  In online advertising, it is a very important metric for evaluating ad performance. As a result, click prediction systems are essential and widely used for sponsored search and real-time bidding.
