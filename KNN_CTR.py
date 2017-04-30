@@ -14,15 +14,6 @@ from sklearn.metrics import log_loss
 from sklearn.metrics import mean_squared_error
 from math import sqrt
 
-#Process data from text file into csv file for usage in code
-def process_csv(filename):
-	fname = str(filename)
-	outputfile = "/home/sonal/BI_project/" + f + "_5million.csv"
-	len_df = sum(1 for line in open(fname)) - 1
-	lines = 5000000
-	skip = sorted(random.sample(range(1, len_df+1),len_df-lines))
-	df = pd.read_csv(fname,skiprows = skip)
-	return df
 
 #Convert to discrete features by using label encoding converting all categorical features to numeric
 def convertToDiscrete(data):
@@ -48,8 +39,6 @@ def pcaFeatures(data, test_df):
 	for i in range(12):
 		data_ = data_new["f"+str(i)]
 
-	#print data_.shape
-
 	test_new = pca.transform(test_df)
 	test_new = pd.DataFrame(test_new)
 	featureNames=[]
@@ -58,9 +47,6 @@ def pcaFeatures(data, test_df):
 	test_new.columns=featureNames
 	for i in range(12):
 		test_ = test_new["f"+str(i)]
-
-	#print test_.shape
-
 
 	return data_, test_
 
@@ -78,14 +64,15 @@ def KNNModel(train_df, train_y, test_X, test_y):
     return acc, model
 
 if __name__ == "__main__":
-	#train_df = process_csv("train")
-	train_df = pd.read_csv("/home/sonal/BI_project/train_5million.csv")
+	
+	#Please enter appropriate path variable where output file from dataset_creation.py is saved
+	# path = "/home/sonal/BI_project/ctr_dataset.csv"
+	train_df = pd.read_csv(path)
 	
 	train = train_df.sample(frac=0.6, random_state=100)
 	test = train_df.drop(train.index)
-	print "1"
+
 	train_X, train_y = train.drop(['click', 'id', 'device_id'], 1), train['click']
-	print "here"
 	test_X, test_y = test.drop(['click', 'id', 'device_id'], 1), test['click']
 
 	train_df, contFeatures = convertToDiscrete(train_X)
