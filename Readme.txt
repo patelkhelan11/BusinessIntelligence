@@ -1,6 +1,5 @@
 ﻿Click-Through Rate prediction
 
-
 Readme file with instructions to execute
 
 1) All the coding files can be found under the “Code” folder. There will be total 4 Python files inside this folder. Please, make sure that all the files under the same directory (dataset files generated and python modules). Since, each of the file was created separately by each team member, please edit the path names inside file before executing.
