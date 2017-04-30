@@ -25,41 +25,6 @@ data_frame = pd.DataFrame()
 train_cols = []
 train_op = pd.DataFrame()
 
-def main():
-
-    data_frame, test_len, train_op, test_op = preprocess_data()
-    #data_frame, test_len, train_op, test_op =data_frame, len(test_data_frame), train_op, test_op
-    #Removing the columns that have maximum unique values.
-    data_frame = col_remove(data_frame)
-
-    # Convert Hour column in data to Day of week, Date and Hour of day
-    #suggested by the discussion forum on the competition page of Kaggle.
-    data_frame = hour_change(data_frame)
-    
-    #creating a list of columns whose values will be encoded
-    col_names_encode_list = ['site_id', 'site_domain', 'site_category', 'app_id', 'app_domain', 'app_category',
-                             'device_id', 'device_model', 'device_ip']
-
-    # Encodes non-float labels to new unique interger values
-    data_frame = encode_label(col_names_encode_list, data_frame)
-
-    # creating a train and testing set (validation set)
-    train_data = data_frame[1:(len(data_frame) - test_len + 1)]
-    test_data = data_frame[(len(train_data)):]
-
-    # Standardize features by removing the mean and scaling to unit variance
-    sl_scaler = preprocessing.StandardScaler()
-    sl_scaler.fit(train_data)
-    train_data = sl_scaler.transform(train_data)
-    sl_scaler.fit(test_data)
-    test_data = sl_scaler.transform(test_data)
-
-    print('************** (Generelized linear model : Link="Logit")Logistic Regression Model ********')
-    #print (len(train_data),len(train_op),len(test_data),len(test_op))
-    logisticModel(train_data, test_data, train_op, test_op)
-    print('************** (Generelized linear model) Logistic Regression Model with SGD and Regulerization ********')
-    logisticSGDModel(train_data, test_data, train_op, test_op)
-
 def encode_label(col_names, data_frame):
     '''
     Encode the lables using "LabelEncoder" methods to integer values.
@@ -137,5 +102,40 @@ def logisticSGDModel(train_data, test_data, train_op, test_op):
     predicted = model._predict_proba(test_data)
     print 'Log Loss of Logistic Model with SGD and L2 regularization ((Model evaluation parameter)  :', metrics.log_loss(test_op, predicted[0:,1])
     print 'RMSE = ', sqrt(mean_squared_error(test_op, predicted[0:,1]))
+    
+def main():
+
+    data_frame, test_len, train_op, test_op = preprocess_data()
+    #data_frame, test_len, train_op, test_op =data_frame, len(test_data_frame), train_op, test_op
+    #Removing the columns that have maximum unique values.
+    data_frame = col_remove(data_frame)
+
+    # Convert Hour column in data to Day of week, Date and Hour of day
+    #suggested by the discussion forum on the competition page of Kaggle.
+    data_frame = hour_change(data_frame)
+    
+    #creating a list of columns whose values will be encoded
+    col_names_encode_list = ['site_id', 'site_domain', 'site_category', 'app_id', 'app_domain', 'app_category',
+                             'device_id', 'device_model', 'device_ip']
+
+    # Encodes non-float labels to new unique interger values
+    data_frame = encode_label(col_names_encode_list, data_frame)
+
+    # creating a train and testing set (validation set)
+    train_data = data_frame[1:(len(data_frame) - test_len + 1)]
+    test_data = data_frame[(len(train_data)):]
+
+    # Standardize features by removing the mean and scaling to unit variance
+    sl_scaler = preprocessing.StandardScaler()
+    sl_scaler.fit(train_data)
+    train_data = sl_scaler.transform(train_data)
+    sl_scaler.fit(test_data)
+    test_data = sl_scaler.transform(test_data)
+
+    print('************** (Generelized linear model : Link="Logit")Logistic Regression Model ********')
+    #print (len(train_data),len(train_op),len(test_data),len(test_op))
+    logisticModel(train_data, test_data, train_op, test_op)
+    print('************** (Generelized linear model) Logistic Regression Model with SGD and Regulerization ********')
+    logisticSGDModel(train_data, test_data, train_op, test_op)
     
 print main()
