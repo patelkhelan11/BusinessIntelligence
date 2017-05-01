@@ -15,3 +15,6 @@ Understanding various data-mining algorithms for binary classification problems.
 Implement Generalized Linear Models (logistic regression and Logistic Regression Model with SGD and L2 regularization)
 Comparison of various data-mining models (Using Log-loss and RMSE)
 
+How to obtain data-set : This was part of a Kaggle competition. Dataset can be obtained from here
+https://www.kaggle.com/c/avazu-ctr-prediction/data
+
