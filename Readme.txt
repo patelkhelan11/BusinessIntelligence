@@ -2,6 +2,10 @@
 
 Readme file with instructions to execute
 
+How to obtain data-set : This was part of a Kaggle competition. Dataset can be obtained from here
+https://www.kaggle.com/c/avazu-ctr-prediction/data
+
+
 1) All the coding files can be found under the “Code” folder. There will be total 4 Python files inside this folder. Please, make sure that all the files under the same directory (dataset files generated and python modules). Since, each of the file was created separately by each team member, please edit the path names inside file before executing.
 Language used : Python. 
 Tool used : Spyder
